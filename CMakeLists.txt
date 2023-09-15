@@ -12,11 +12,9 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 add_executable(${CMAKE_PROJECT_NAME} ${CMAKE_SOURCE_DIR}/src/main.cpp)
 
-find_package(Threads REQUIRED)
-
 target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/include)
 
-target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE ${CONAN_LIBS} PUBLIC Threads::Threads)
+target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE ${CONAN_LIBS})
 
 if (NOT CMAKE_BUILD_TYPE STREQUAL "Release")
     message("NOT RELEASE mode - enable testing")
