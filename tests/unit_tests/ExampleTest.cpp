@@ -10,9 +10,9 @@ struct ExampleTest : testing::Test {
 TEST_F(ExampleTest, test) {
     // given
     // when
-    auto value = example.get_number();
+    auto value = example.getXOfRectangle();
 
     // then
-    const auto expected_value{5};
+    const auto expected_value{128.f};
     ASSERT_EQ(value, expected_value);
 }

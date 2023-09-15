@@ -1,66 +1,30 @@
-# template-cpp
+# IdleRomanEmpire
 
 ### Requirements
 - Compiler (Gcc / clang / MSVC)
-- Cppcheck
-- ccatche
 - Conan
 
-### Things to add
-- [x] Licence update
-- [x] Conan support
-    - [x] fmt 8.x.x
-    - [x] spdlog 1.10.0
-    - [x] gtest 1.11.0
-- [x] Appropriate compiler flags GCC 
-- [x] Appropriate compiler flags Clang
-- [x] Appropriate compiler flags MSVC
-- [x] Cpp20 support
-- [x] clang-tidy
-- [x] [cppcheck](https://cppcheck.sourceforge.io/)
-- [x] [ccache](https://ccache.dev/)
-- [x] [Google test examples](https://google.github.io/googletest/)
-- [ ] Think about and add Relase builds in CI/CD
-- [ ] Docker development environment example
-- [x] [Doxygen documentation setup](https://www.doxygen.nl/index.html)
-- [x] github actions for three compilers (GCC, Clang, MSVC)
-  - [x] GCC
-  - [x] Clang
-  - [x] MSVC
-- [x] github actions for three platforms (Linux, Windows, Mac OS)
-- [ ] GCC and clang on windows
-- [x] Basic code coverage for GCC 
-- [ ] Advanced code coverage based on unit and integrations tests and combined coverage
-- [ ] Coverage for different compilers (MSVC and Clang)
-- [ ] Badges
-    - [ ] Coverage at unit tests
-    - [ ] Coverage at integration tests
-    - [ ] Combined coverage
-    - [ ] code quality c/c++
-    - [ ] All compilers and all platforms
-- [ ] Docs folder
-  - [ ] Doxygen tutorial page
-  - [ ] Docker development environment
-- [ ] [Fuzz testing with LibFuzzer](https://llvm.org/docs/LibFuzzer.html)
-- [ ] Sanitizers
-    - [ ] [Address](https://github.com/google/sanitizers/wiki/AddressSanitizer) or [HWASAN](https://clang.llvm.org/docs/HardwareAssistedAddressSanitizerDesign.html)
-    - [ ] [Memory](https://github.com/google/sanitizers/wiki/MemorySanitizer)
-    - [ ] [Thread](https://github.com/google/sanitizers/wiki/ThreadSanitizerCppManual)
-    - [ ] [Leak](https://github.com/google/sanitizers/wiki/AddressSanitizerLeakSanitizer)
-    - [ ] [Undefined Behaviour](https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html)
 
-### Troubleshooting
+## About Project
+This will be an idle game based on the Roman Empire where you progress through the census rank starting from being a slave and progressing through many generations. Main objective is to earn money. On Slave phase you can't earn money but get experience in choosen industry related skills. More will be described in future wiki.
 
-Invalid setting '14' is not a valid 'settings.compiler.version' value.
+## Building 
 
-If you see above warning. Just update your conan settings like [this](https://docs.conan.io/en/1.36/extending/custom_settings.html#custom-settings)
+TODO
 
-### Requirements
+## Contributions
 
-- Graphviz for doxygen dot
+If you want to implement some features from Issue list or you have your own feel free to do this. You can just open new issue with your idea to discuss with others.
 
-Linux: 
-`sudo apt install graphviz`
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request to current develop
 
-Others:
-[GraphViz](https://www.graphviz.org/download/)
+## Contact
+
+Jakub Dobrowolski  [![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jakub-dobrowolski/)  [![Gmail](https://img.shields.io/badge/gmail-D14836?&logo=gmail&logoColor=white)](jd.kuba96@gmail.com) jd.kuba96@gmail.com
+
+
+Project Link: https://github.com/Kubaaa96/IdleRomanEmpire

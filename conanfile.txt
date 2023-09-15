@@ -2,7 +2,7 @@
 fmt/9.1.0
 gtest/1.11.0
 spdlog/1.10.0
-doxygen/1.9.4
+sfml/2.6.0
 
 [generators]
 cmake_find_package_multi

@@ -1,10 +1,6 @@
 name: MacOS
 on: [ push, pull_request ]
 
-env:
-  REPO: template-cpp
-  GITHUB_REPO: Kubaaa96/template-cpp
-
 jobs:
   linux:
     name: MacOS 12

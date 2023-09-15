@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.16)
 set(CONAN_SYSTEM_INCLUDES ON)
 include(${CMAKE_SOURCE_DIR}/cmake/CMakeUtils.cmake)
 
-project(template-cpp VERSION 0.0.1 DESCRIPTION "" LANGUAGES CXX)
+project(IdleRomanEmpire VERSION 0.0.1 DESCRIPTION "" LANGUAGES CXX)
 
 initialize_conan()
 
@@ -23,5 +23,3 @@ if (NOT CMAKE_BUILD_TYPE STREQUAL "Release")
 else ()
     message("RELEASE mode - testing disabled")
 endif ()
-
-include(cmake/Doxygen.cmake)
