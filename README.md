@@ -8,9 +8,28 @@
 ## About Project
 This will be an idle game based on the Roman Empire where you progress through the census rank starting from being a slave and progressing through many generations. Main objective is to earn money. On Slave phase you can't earn money but get experience in choosen industry related skills. More will be described in future wiki.
 
-## Building 
+## Building
 
-TODO
+Building this project requires [SFML](https://github.com/SFML/SFML) to be installed. You can either build it from source or acquire it from a package manager like VCPKG.
+
+Clone:
+```
+git clone https://github.com/Kubaaa96/IdleRomanEmpire.git
+```
+
+This project uses cmake, so you can build it simply by first configuring with the build system of choice
+```
+cmake . -B build -D CMAKE_BUILD_TYPE=Release
+```
+
+and then compiling
+
+```
+cmake --build ./build --config Release 
+```
+
+
+You can also refer to github workflows for examples with complete build pipelines.
 
 ## Contributions
 
