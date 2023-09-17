@@ -54,7 +54,6 @@ macro(initialize_conan)
     )
 endmacro()
 
-
 function(download_conan_cmake)
     if (NOT EXISTS "${CMAKE_BINARY_DIR}/conan/conan.cmake")
         message(STATUS "Downloading conan.cmake from https://github.com/conan-io/cmake-conan")
