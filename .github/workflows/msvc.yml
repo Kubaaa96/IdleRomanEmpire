@@ -20,7 +20,7 @@ jobs:
 
     steps:
       - name: Install dependencies
-        run: pip install conan==1.59.0 gcovr
+        run: pip install conan==1.61.0 gcovr
 
       - name: Clone the git repo
         uses: actions/checkout@v2
@@ -37,6 +37,7 @@ jobs:
         working-directory: project
         run:
           cmake . -Bbuild
+          -G "Visual Studio 17 2022"
           -A ${{ matrix.PLATFORM }}
           -T ${{ matrix.TOOLSET }}
           -DCMAKE_BUILD_TYPE="${{ matrix.BUILD_TYPE }}"
