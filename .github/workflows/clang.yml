@@ -1,4 +1,4 @@
-name: Linux
+name: Clang
 on: [ push, pull_request ]
 
 jobs:
@@ -8,9 +8,13 @@ jobs:
     strategy:
       matrix:
         BUILD_TYPE: [ Debug, Release ]
-        CC: [ gcc-12, gcc-13, clang-14, clang-15 ]
-        CXX: [ g++-12, g++-13. clang++-14, clang++-15 ]
+        CLANG: [ 13, 14, 15 ]
     steps:
+      - name: Setup toolchain
+        uses: egor-tensin/setup-clang@v1
+        with:
+          version: ${{matrix.CLANG}}
+
       - name: Install dependencies
         run: |
           pip install conan==1.59.0 gcovr
@@ -18,7 +22,7 @@ jobs:
           sudo apt-get install -y libudev-dev libgl-dev libx11-xcb-dev libfontenc-dev libxaw7-dev libxcomposite-dev libxcursor-dev libxdamage-dev libxfixes-dev libxi-dev libxinerama-dev libxmu-dev libxmuu-dev libxpm-dev libxrandr-dev libxres-dev libxss-dev libxtst-dev libxv-dev libxvmc-dev libxxf86vm-dev libxcb-render-util0-dev libxcb-xkb-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-keysyms1-dev libxcb-randr0-dev libxcb-shape0-dev libxcb-sync-dev libxcb-xfixes0-dev libxcb-xinerama0-dev libxcb-dri3-dev libxcb-cursor-dev libxcb-util-dev libxcb-util0-dev
 
       - name: Clone the git repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           path: project
           fetch-depth: 50
@@ -32,8 +36,8 @@ jobs:
         working-directory: project
         run: cmake -Bbuild
           -DCMAKE_BUILD_TYPE="${{ matrix.BUILD_TYPE }}"
-          -DCMAKE_C_COMPILER="${{ matrix.CC }}"
-          -DCMAKE_CXX_COMPILER="${{ matrix.CXX }}" .
+          -DCMAKE_C_COMPILER=clang-"${{ matrix.CLANG }}"
+          -DCMAKE_CXX_COMPILER=clang++-"${{ matrix.CLANG }}" .
 
       - name: Build project
         working-directory: project
