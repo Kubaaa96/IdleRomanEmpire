@@ -10,13 +10,6 @@ jobs:
         BUILD_TYPE: [ Debug, Release ]
         PLATFORM: [ x64 ]
         TOOLSET: [ v143 ]
-        CONFIG:
-          - {
-            BUILD_TYPE: Release
-          }
-          - {
-            BUILD_TYPE: Debug
-          }
 
     steps:
       - name: Install dependencies
