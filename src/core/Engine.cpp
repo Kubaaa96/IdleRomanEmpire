@@ -1,11 +1,12 @@
 #include "core/Engine.hpp"
-#include <fmt/core.h>
+
+#include <spdlog/spdlog.h>
 
 Engine::Engine(std::unique_ptr<SystemWindow> window) : window_(std::move(window)) {}
 
-
 void Engine::run() {
-    fmt::print("IRELib | Engine\n");
+
+    spdlog::debug("IRELib | Engine");
 
     for (;;) {
         window_->processEvents();

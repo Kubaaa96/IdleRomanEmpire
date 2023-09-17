@@ -5,5 +5,5 @@ void Application::run() {
 
 }
 Application::Application()
-    : window_(std::make_unique<SystemWindow>(sf::VideoMode(window_width, window_height), "Idle Roman Empire")),
+    : window_(std::make_unique<GameWindow>(sf::VideoMode(window_width, window_height), "Idle Roman Empire")),
       engine_(std::make_unique<Engine>(std::move(window_))) {}

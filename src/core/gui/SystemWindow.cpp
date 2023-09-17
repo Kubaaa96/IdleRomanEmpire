@@ -7,16 +7,11 @@ void SystemWindow::display() {
 }
 
 void SystemWindow::update() {
-    window_->clear();
+    stateMachine_->nextState();
 }
 
 void SystemWindow::draw() {
-    sf::RectangleShape rectangle(sf::Vector2f(128.0f, 128.0f));
-    rectangle.setFillColor(sf::Color::Blue);
-    rectangle.setPosition(320, 240);
-    rectangle.setOrigin(rectangle.getSize().x / 2, rectangle.getSize().y / 2);
-
-    window_->draw(rectangle);
+    stateMachine_->draw();
 }
 
 bool SystemWindow::isOpen() {
@@ -29,6 +24,7 @@ void SystemWindow::processEvents() {
     while (window_->pollEvent(event)) {
         if (event.type == sf::Event::MouseButtonPressed) {
             fmt::print("Mouse button click location: {}, {}\n", event.mouseButton.x, event.mouseButton.y);
+
         }
         if (event.type == sf::Event::Closed) {
             window_->close();

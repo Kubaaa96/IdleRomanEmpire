@@ -1,12 +1,19 @@
 #pragma once
 
+#include "core/state/StateMachine.hpp"
+#include "core/state/State.hpp"
+
 #include <SFML/Graphics.hpp>
 
 #include <memory>
 
 struct SystemWindow {
+
     template<typename... T>
-    explicit SystemWindow(T&&... args) : window_(std::make_unique<sf::RenderWindow>(std::forward<T>(args)...)) {}
+    explicit SystemWindow(T&&... args)
+        : window_(std::make_unique<sf::RenderWindow>(std::forward<T>(args)...)),
+          stateMachine_(std::make_unique<StateMachine>()) {
+    }
 
     SystemWindow(const SystemWindow&) = delete;
     SystemWindow& operator=(SystemWindow&) = delete;
@@ -26,6 +33,7 @@ struct SystemWindow {
 
     void draw();
 
-private:
+protected:
     std::unique_ptr<sf::RenderWindow> window_;
+    std::unique_ptr<StateMachine> stateMachine_;
 };

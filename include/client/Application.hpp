@@ -1,7 +1,8 @@
 #pragma once
 
+#include "client/gui/GameWindow.hpp"
+
 #include "core/Engine.hpp"
-#include "core/gui/SystemWindow.hpp"
 
 #include <SFML/Graphics.hpp>
 
@@ -24,6 +25,6 @@ private:
     const unsigned int window_width{1920};
     const unsigned int window_height{1080};
 
-    std::unique_ptr<SystemWindow> window_;
+    std::unique_ptr<GameWindow> window_;
     std::unique_ptr<Engine> engine_;
 };
