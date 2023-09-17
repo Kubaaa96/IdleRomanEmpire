@@ -1,6 +1,6 @@
 #include "client/state/GameState.hpp"
 
-GameState::GameState(sf::RenderTarget *renderTarget) : State(renderTarget) {}
+GameState::GameState(sf::RenderTarget *renderTarget, bool replacing) : State(renderTarget, replacing) {}
 
 void GameState::draw() {
     State::draw();

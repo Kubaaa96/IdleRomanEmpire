@@ -6,7 +6,11 @@ void StateMachine::run(std::unique_ptr<State> state) {
 
 void StateMachine::nextState() {
     if (auto temp_state = states_.top()->next(); !states_.empty() && temp_state != nullptr) {
-        states_.pop();
+
+        if(temp_state->isReplacing()){
+            states_.pop();
+        }
+
         states_.push(std::move(temp_state));
     }
 }

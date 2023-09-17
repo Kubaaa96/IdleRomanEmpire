@@ -1,6 +1,6 @@
 #include "client/state/MenuState.hpp"
 
-MenuState::MenuState(sf::RenderTarget *renderTarget) : State(renderTarget) {}
+MenuState::MenuState(sf::RenderTarget *renderTarget, bool replacing) : State(renderTarget, replacing) {}
 
 void MenuState::draw() {
     State::draw();
