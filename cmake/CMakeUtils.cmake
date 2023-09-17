@@ -1,3 +1,9 @@
+function(add_app APP_NAME)
+    cmake_parse_arguments(ARGS "" "" "SOURCES;DEPENDS" ${ARGN})
+    add_executable(${APP_NAME} ${ARGS_SOURCES})
+    get_property(PROJECT_LIBS GLOBAL PROPERTY PROJECT_LIBS_PROPERTY)
+    set_link_options_app(${APP_NAME} DEPENDS ${ARGS_DEPENDS})
+endfunction()
 
 function(create_test TESTNAME)
     cmake_parse_arguments(ARGS "" "" "SOURCES;DEPENDS" ${ARGN})
@@ -11,9 +17,34 @@ function(create_test TESTNAME)
 
 endfunction()
 
-function(set_link_options TARGET_NAME)
+function(add_library_and_link)
+    set(prefix ARG)
+    set(options SKIP_CXX_FLAGS)
+    set(singleValues NAME)
+    set(multiValues SOURCES DEPENDS)
+    cmake_parse_arguments(${prefix} "${options}" "${singleValues}" "${multiValues}" ${ARGN})
+    if (ARG_SKIP_CXX_FLAGS)
+        set(SKIP_CXX_FLAGS "SKIP_CXX_FLAGS")
+    endif ()
+
+    set(LIB_NAME ${${prefix}_NAME})
+    set(LIB_SOURCES ${${prefix}_SOURCES})
+    add_library(${LIB_NAME} STATIC ${LIB_SOURCES})
+
+    set_link_options(${LIB_NAME} ${SKIP_CXX_FLAGS} DEPENDS ${${prefix}_DEPENDS})
+endfunction()
+
+function(set_link_options_app TARGET_NAME)
     cmake_parse_arguments(ARGS "" "" "DEPENDS" ${ARGN})
     target_include_directories(${TARGET_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/include)
+    target_link_libraries(${TARGET_NAME} PUBLIC ${ARGS_DEPENDS})
+    include(${CMAKE_SOURCE_DIR}/cmake/CompilerWarnings.cmake)
+    set_project_warnings(${TARGET_NAME})
+endfunction()
+
+function(set_link_options TARGET_NAME)
+    cmake_parse_arguments(ARGS "" "" "DEPENDS" ${ARGN})
+    target_include_directories(${TARGET_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/include ${CONAN_INCLUDE_DIRS})
     target_link_libraries(${TARGET_NAME} PRIVATE ${CONAN_LIBS} PUBLIC ${ARGS_DEPENDS})
     include(${CMAKE_SOURCE_DIR}/cmake/CompilerWarnings.cmake)
     set_project_warnings(${TARGET_NAME})
@@ -30,7 +61,6 @@ macro(initialize_conan)
             BUILD missing
     )
 endmacro()
-
 
 function(download_conan_cmake)
     if (NOT EXISTS "${CMAKE_BINARY_DIR}/conan/conan.cmake")
