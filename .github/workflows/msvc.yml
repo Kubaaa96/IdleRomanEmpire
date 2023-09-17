@@ -8,8 +8,8 @@ jobs:
     strategy:
       matrix:
         BUILD_TYPE: [ Debug, Release ]
-        PLATFORM: [ Win32, x64 ]
-        TOOLSET: [ v142, v143 ]
+        PLATFORM: [ x64 ]
+        TOOLSET: [ v143 ]
         CONFIG:
           - {
             BUILD_TYPE: Release
