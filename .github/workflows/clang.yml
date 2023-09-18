@@ -1,4 +1,4 @@
-name: Linux
+name: Clang
 on: [ push, pull_request ]
 
 jobs:
@@ -7,36 +7,22 @@ jobs:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
-        CONFIG:
-          - {
-            BUILD_TYPE: Release,
-            CC: gcc-12,
-            CXX: g++-12
-          }
-          - {
-            BUILD_TYPE: Debug,
-            CC: gcc-12,
-            CXX: g++-12
-          }
-          - {
-            BUILD_TYPE: Release,
-            CC: clang-14,
-            CXX: clang++-14
-          }
-          - {
-            BUILD_TYPE: Debug,
-            CC: clang-14,
-            CXX: clang++-14
-          }
+        BUILD_TYPE: [ Debug, Release ]
+        CLANG: [ 13, 14, 15, 16 ]
     steps:
+      - name: Setup toolchain
+        uses: egor-tensin/setup-clang@v1
+        with:
+          version: ${{matrix.CLANG}}
+
       - name: Install dependencies
         run: |
-          pip install conan==1.59.0 gcovr
+          pip install conan==1.61.0 gcovr
           sudo apt-get update
           sudo apt-get install -y libudev-dev libgl-dev libx11-xcb-dev libfontenc-dev libxaw7-dev libxcomposite-dev libxcursor-dev libxdamage-dev libxfixes-dev libxi-dev libxinerama-dev libxmu-dev libxmuu-dev libxpm-dev libxrandr-dev libxres-dev libxss-dev libxtst-dev libxv-dev libxvmc-dev libxxf86vm-dev libxcb-render-util0-dev libxcb-xkb-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-keysyms1-dev libxcb-randr0-dev libxcb-shape0-dev libxcb-sync-dev libxcb-xfixes0-dev libxcb-xinerama0-dev libxcb-dri3-dev libxcb-cursor-dev libxcb-util-dev libxcb-util0-dev
 
       - name: Clone the git repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           path: project
           fetch-depth: 50
@@ -49,19 +35,18 @@ jobs:
       - name: Configure project
         working-directory: project
         run: cmake -Bbuild
-          -DCMAKE_BUILD_TYPE="${{ matrix.CONFIG.BUILD_TYPE }}"
-          -DCMAKE_C_COMPILER="${{ matrix.CONFIG.CC }}"
-          -DCMAKE_CXX_COMPILER="${{ matrix.CONFIG.CXX }}" .
+          -DCMAKE_BUILD_TYPE="${{ matrix.BUILD_TYPE }}"
+          -DCMAKE_CXX_COMPILER=clang++-"${{ matrix.CLANG }}" .
 
       - name: Build project
         working-directory: project
-        run: cmake --build ./build --config ${{ matrix.CONFIG.BUILD_TYPE }}  -- -j $(nproc --all)
+        run: cmake --build ./build --config ${{ matrix.BUILD_TYPE }}  -- -j $(nproc --all)
 
       - name: Run tests
         working-directory: project/build
         run:
-          if [ "${{ matrix.CONFIG.BUILD_TYPE }}" == "Debug" ]; then
-          cd tests && ctest -C ${{ matrix.CONFIG.BUILD_TYPE }} --output-on-failure --timeout 540;
+          if [ "${{ matrix.BUILD_TYPE }}" == "Debug" ]; then
+          cd tests && ctest -C ${{ matrix.BUILD_TYPE }} --output-on-failure --timeout 540;
           else
           echo "No test on Release Build type";
           fi

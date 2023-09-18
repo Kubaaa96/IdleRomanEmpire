@@ -1,0 +1,54 @@
+name: MSVC
+on: [ push, pull_request ]
+
+jobs:
+  windows:
+    name: Windows
+    runs-on: windows-2022
+    strategy:
+      matrix:
+        BUILD_TYPE: [ Debug, Release ]
+        PLATFORM: [ x64 ]
+        TOOLSET: [ v143 ]
+
+    steps:
+      - name: Install dependencies
+        run: pip install conan==1.61.0 gcovr
+
+      - name: Clone the git repo
+        uses: actions/checkout@v3
+        with:
+          path: project
+          fetch-depth: 50
+
+      - name: Create project build directory
+        working-directory: project
+        run: |
+          mkdir build
+
+      - name: Configure project
+        working-directory: project
+        run:
+          cmake . -Bbuild
+          -G "Visual Studio 17 2022"
+          -A ${{ matrix.PLATFORM }}
+          -T ${{ matrix.TOOLSET }}
+          -DCMAKE_BUILD_TYPE="${{ matrix.BUILD_TYPE }}"
+
+      - name: Build project
+        working-directory: project
+        run: |
+          $threads = (Get-CimInstance Win32_ComputerSystem).NumberOfLogicalProcessors
+          cmake --build ./build --config ${{ matrix.BUILD_TYPE }} --parallel $threads
+
+      - name: Run tests
+        working-directory: project/build
+        run:
+          if ("${{ matrix.BUILD_TYPE }}" -eq "Debug")
+          {
+          cd tests;
+          ctest -C ${{ matrix.BUILD_TYPE }} --output-on-failure --timeout 540 }
+          else
+          {
+          Write-host "No test on Release Build type"
+          }
