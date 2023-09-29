@@ -1,8 +1,6 @@
 #include "core/gui/widgets/Widget.hpp"
 
-#include <utility>
-
-void Widget::setPosition(sf::Vector2f position) {
+void Widget::setPosition(const sf::Vector2f& position) {
     position_ = position;
 }
 
@@ -29,7 +27,7 @@ Container* Widget::getParent() const {
     return parent_;
 }
 
-void Widget::setSize(sf::Vector2f size) {
+void Widget::setSize(const sf::Vector2f& size) {
     size_ = size;
 }
 
@@ -38,7 +36,7 @@ sf::Vector2f Widget::getSize() const {
 }
 void Widget::setLocalPosition(const sf::Vector2f& local_position) {
     local_position_ = local_position;
-    position_ = origin_ + local_position_;
+    setPosition(origin_ + local_position);
 }
 
 sf::Vector2f Widget::getLocalPosition() const {

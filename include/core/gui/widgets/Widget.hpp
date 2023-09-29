@@ -20,10 +20,10 @@ struct Widget {
 
     virtual void draw(sf::RenderTarget* target) = 0;
 
-    void setSize(sf::Vector2f size);
+    virtual void setSize(const sf::Vector2f& size);
     [[nodiscard]] sf::Vector2f getSize() const;
 
-    void setPosition(sf::Vector2f position);
+    virtual void setPosition(const sf::Vector2f& position);
     [[nodiscard]] sf::Vector2f getPosition() const;
 
     void setLocalPosition(const sf::Vector2f& localPosition);
@@ -32,14 +32,13 @@ struct Widget {
     void setOrigin(sf::Vector2f origin);
     [[nodiscard]] sf::Vector2f getOrigin() const;
 
-    void setParent(Container *parent);
-    [[nodiscard]] Container *getParent() const;
+    void setParent(Container* parent);
+    [[nodiscard]] Container* getParent() const;
 
     // TODO Clone Widget?
     // TODO relative methods for move, rotate scale
     // TODO gen ptr to widget by clicking on it ?
 protected:
-
     sf::Vector2f size_{0.F, 0.F};
     sf::Vector2f position_{0.F, 0.F};
     sf::Vector2f local_position_{0.F, 0.F};
@@ -50,5 +49,5 @@ protected:
     // TODO visibility
     // TODO enable
 
-    Container *parent_ = nullptr;
+    Container* parent_ = nullptr;
 };

@@ -1,11 +1,13 @@
 #pragma once
 
-#include "core/gui/widgets/Widget.hpp"
+#include "core/gui/widgets/ClickableWidget.hpp"
 
 #include <SFML/Graphics.hpp>
 
-struct Button : Widget{
+struct Button : ClickableWidget{
     Button();
+
+    void updateWidget() override;
 
     void draw(sf::RenderTarget *target) override;
 

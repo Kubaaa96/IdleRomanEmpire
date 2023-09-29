@@ -9,7 +9,7 @@ void GameState::draw() {
     const auto current_viewport_size = static_cast<sf::Vector2f>(render_target_->getSize());
     group_ = std::make_unique<Group>(current_viewport_size);
     group_->add(std::move(button));
-
+    group_->setPosition({120, 120});
     State::draw();
 
 //    sf::RectangleShape rectangle(sf::Vector2f(128.0f, 128.0f));

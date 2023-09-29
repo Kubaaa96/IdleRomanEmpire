@@ -8,3 +8,7 @@ Button::Button() {
 void Button::draw(sf::RenderTarget *target) {
     target->draw(rectangle_shape);
 }
+
+void Button::updateWidget() {
+    rectangle_shape.setPosition(position_);
+}
