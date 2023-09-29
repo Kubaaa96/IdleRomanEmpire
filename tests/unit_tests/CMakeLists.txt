@@ -6,7 +6,11 @@ if (CMAKE_COMPILER_IS_GNUCXX)
     append_coverage_compiler_flags()
 endif ()
 
+add_subdirectory(core)
+
 create_test(ExampleTest
         SOURCES ExampleTest.cpp
         ${CMAKE_SOURCE_DIR}/src/Example.cpp
+        DEPENDS
+        IRELib
         )

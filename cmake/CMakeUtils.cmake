@@ -8,7 +8,7 @@ endfunction()
 function(create_test TESTNAME)
     cmake_parse_arguments(ARGS "" "" "SOURCES;DEPENDS" ${ARGN})
     add_executable(${TESTNAME} ${ARGS_SOURCES})
-    set_link_options(${TESTNAME} DEPENDS ${ARGS_DEPENDS})
+    set_link_options_app(${TESTNAME} DEPENDS ${ARGS_DEPENDS})
     gtest_discover_tests(${TESTNAME}
             WORKING_DIRECTORY ${PROJECT_DIR}
             PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY "${PROJECT_DIR}"

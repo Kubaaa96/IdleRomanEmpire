@@ -12,7 +12,7 @@ struct SystemWindow {
     template<typename... T>
     explicit SystemWindow(T&&... args)
         : window_(std::make_unique<sf::RenderWindow>(std::forward<T>(args)...)),
-          stateMachine_(std::make_unique<StateMachine>()) {
+          state_machine_(std::make_unique<StateMachine>()) {
     }
 
     SystemWindow(const SystemWindow&) = delete;
@@ -35,5 +35,5 @@ struct SystemWindow {
 
 protected:
     std::unique_ptr<sf::RenderWindow> window_;
-    std::unique_ptr<StateMachine> stateMachine_;
+    std::unique_ptr<StateMachine> state_machine_;
 };

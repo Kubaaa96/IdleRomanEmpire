@@ -4,7 +4,8 @@
 
 struct GameState : State{
 
-    explicit GameState(sf::RenderTarget* renderTarget, bool replacing);
+    explicit GameState(sf::RenderTarget* render_target, bool replacing);
 
     void draw() override;
 };
+

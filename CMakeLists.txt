@@ -10,6 +10,7 @@ initialize_conan()
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+add_subdirectory(benchmarks)
 add_subdirectory(src)
 
 if (NOT CMAKE_BUILD_TYPE STREQUAL "Release")

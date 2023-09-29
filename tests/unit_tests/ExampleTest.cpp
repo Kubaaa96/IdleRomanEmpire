@@ -2,7 +2,7 @@
 
 #include <gtest/gtest.h>
 #include <fmt/core.h>
-
+#include "core/gui/widgets/Widget.hpp"
 struct ExampleTest : testing::Test {
     Example example;
 };
