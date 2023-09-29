@@ -3,9 +3,6 @@
 #include "core/gui/widgets/Widget.hpp"
 
 struct Container : Widget {
-    Container() = default;
-    ~Container() = default;
-
     // TODO add widget
     virtual void add(std::unique_ptr<Widget> widget);
     // TODO connect two containers
