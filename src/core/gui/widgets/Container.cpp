@@ -1,4 +1,7 @@
 #include "core/gui/widgets/Container.hpp"
+#include "core/gui/widgets/WidgetType.hpp"
+
+Container::Container(std::string_view name) : Widget(name) {}
 
 void Container::add(std::unique_ptr<Widget> widget) {
     widget->setParent(this);
@@ -10,3 +13,4 @@ void Container::draw(sf::RenderTarget* target) {
         widget->draw(target);
     });
 }
+

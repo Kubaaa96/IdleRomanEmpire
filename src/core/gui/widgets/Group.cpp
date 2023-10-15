@@ -1,5 +1,7 @@
 #include "core/gui/widgets/Group.hpp"
 
+Group::Group() : Container("Group") {}
+
 void Group::updateWidgets() {
     std::ranges::for_each(widgets_, [&position_ = position_](const std::unique_ptr<Widget>& widget) {
         widget->setOrigin(position_);
@@ -16,3 +18,4 @@ void Group::setPosition(const sf::Vector2f& position) {
     Widget::setPosition(position);
     updateWidgets();
 }
+

@@ -1,5 +1,7 @@
 #include "core/gui/widgets/Widget.hpp"
 
+Widget::Widget(std::string_view name) : m_type(WidgetType::create(name)) {}
+
 void Widget::setPosition(const sf::Vector2f& position) {
     position_ = position;
 }
@@ -41,4 +43,8 @@ void Widget::setLocalPosition(const sf::Vector2f& local_position) {
 
 sf::Vector2f Widget::getLocalPosition() const {
     return local_position_;
+}
+
+const WidgetType Widget::getType() const {
+    return m_type;
 }

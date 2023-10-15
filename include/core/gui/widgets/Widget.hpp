@@ -1,13 +1,17 @@
 #pragma once
 
+#include "core/gui/widgets/WidgetType.hpp"
+
 #include <SFML/Graphics.hpp>
 
 #include <memory>
 #include <fmt/core.h>
+
 struct Container;
+struct WidgetType;
 
 struct Widget {
-    explicit Widget() = default;
+    explicit Widget(std::string_view name);
 
     Widget(const Widget&) = delete;
     Widget& operator=(const Widget&) = delete;
@@ -35,6 +39,8 @@ struct Widget {
     void setParent(Container* parent);
     [[nodiscard]] Container* getParent() const;
 
+    [[nodiscard]] virtual const WidgetType getType() const;
+
     // TODO Clone Widget?
     // TODO relative methods for move, rotate scale
     // TODO gen ptr to widget by clicking on it ?
@@ -50,4 +56,5 @@ protected:
     // TODO enable
 
     Container* parent_ = nullptr;
+    const WidgetType m_type;
 };
