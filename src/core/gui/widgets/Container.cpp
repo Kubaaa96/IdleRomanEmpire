@@ -14,3 +14,6 @@ void Container::draw(sf::RenderTarget* target) {
     });
 }
 
+std::size_t Container::getWidgetsSize() const {
+    return widgets_.size();
+}

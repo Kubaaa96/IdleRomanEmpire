@@ -16,7 +16,7 @@ struct Container : Widget {
     // TODO Release widget by index
     // TODO Release widget by name
     // TODO Clone whole container
-
+    [[nodiscard]] std::size_t getWidgetsSize() const;
 protected:
     std::vector<std::unique_ptr<Widget>> widgets_;
 };

@@ -6,10 +6,10 @@
 struct WidgetType
 {
     [[nodiscard]] uint64_t getIndex() const {
-        return _index;
+        return index_;
     }
     [[nodiscard]] std::string_view getName() const {
-        return _name;
+        return name_;
     }
 
     static WidgetType create(std::string_view name)
@@ -18,10 +18,10 @@ struct WidgetType
     }
 
 private:
-    uint64_t _index;
-    std::string_view _name;
+    uint64_t index_;
+    std::string_view name_;
 
-    WidgetType(uint64_t index, std::string_view name) : _index(index), _name(name) {};
+    WidgetType(uint64_t index, std::string_view name) : index_(index), name_(name) {};
 
     [[nodiscard]] static uint64_t makeNextId()
     {

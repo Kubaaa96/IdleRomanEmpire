@@ -56,5 +56,5 @@ protected:
     // TODO enable
 
     Container* parent_ = nullptr;
-    const WidgetType m_type;
+    const WidgetType type_;
 };
