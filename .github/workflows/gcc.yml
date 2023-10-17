@@ -16,9 +16,7 @@ jobs:
           pip install conan==1.61.0 gcovr
           sudo add-apt-repository --yes --update ppa:ubuntu-toolchain-r/test
           sudo apt-get update
-          export DISPLAY=:99
-          sudo DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends g++-${{matrix.gcc}} xvfb libudev-dev libgl-dev libx11-xcb-dev libfontenc-dev libxaw7-dev libxcomposite-dev libxcursor-dev libxdamage-dev libxfixes-dev libxi-dev libxinerama-dev libxmu-dev libxmuu-dev libxpm-dev libxrandr-dev libxres-dev libxss-dev libxtst-dev libxv-dev libxvmc-dev libxxf86vm-dev libxcb-render-util0-dev libxcb-xkb-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-keysyms1-dev libxcb-randr0-dev libxcb-shape0-dev libxcb-sync-dev libxcb-xfixes0-dev libxcb-xinerama0-dev libxcb-dri3-dev libxcb-cursor-dev libxcb-util-dev libxcb-util0-dev
-          sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends g++-${{matrix.gcc}} libudev-dev libgl-dev libx11-xcb-dev libfontenc-dev libxaw7-dev libxcomposite-dev libxcursor-dev libxdamage-dev libxfixes-dev libxi-dev libxinerama-dev libxmu-dev libxmuu-dev libxpm-dev libxrandr-dev libxres-dev libxss-dev libxtst-dev libxv-dev libxvmc-dev libxxf86vm-dev libxcb-render-util0-dev libxcb-xkb-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-keysyms1-dev libxcb-randr0-dev libxcb-shape0-dev libxcb-sync-dev libxcb-xfixes0-dev libxcb-xinerama0-dev libxcb-dri3-dev libxcb-cursor-dev libxcb-util-dev libxcb-util0-dev xvfb
 
       - name: Clone the git repo
         uses: actions/checkout@v3
@@ -43,8 +41,10 @@ jobs:
 
       - name: Run tests
         working-directory: project/build
-        run:
+        run: |
           if [ "${{ matrix.BUILD_TYPE }}" == "Debug" ]; then
+          export DISPLAY=:99
+          sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
           cd tests && ctest -C ${{ matrix.BUILD_TYPE }} --output-on-failure --timeout 540;
           else
           echo "No test on Release Build type";
