@@ -7,10 +7,3 @@ if (CMAKE_COMPILER_IS_GNUCXX)
 endif ()
 
 add_subdirectory(core)
-
-create_test(ExampleTest
-        SOURCES ExampleTest.cpp
-        ${CMAKE_SOURCE_DIR}/src/Example.cpp
-        DEPENDS
-        IRELib
-        )

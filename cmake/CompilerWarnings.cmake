@@ -6,6 +6,7 @@
 
 function(set_project_warnings TARGET_NAME)
     set(MSVC_WARNINGS
+            /WX
             /W4     # Baseline reasonable warnings
             /w14242 # 'identifier': conversion from 'type1' to 'type1', possible loss
             # of data
@@ -42,6 +43,7 @@ function(set_project_warnings TARGET_NAME)
     set(CLANG_WARNINGS
             -Wall
             -Wno-dev
+            -Werror
             -Wextra  # reasonable and standard
             -Wshadow # warn the user if a variable declaration shadows one from a
             # parent context

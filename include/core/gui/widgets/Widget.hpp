@@ -39,21 +39,14 @@ struct Widget {
     void setParent(Container* parent);
     [[nodiscard]] Container* getParent() const;
 
-    [[nodiscard]] virtual const WidgetType getType() const;
+    [[nodiscard]] virtual WidgetType getType() const;
 
-    // TODO Clone Widget?
-    // TODO relative methods for move, rotate scale
-    // TODO gen ptr to widget by clicking on it ?
 protected:
     sf::Vector2f size_{0.F, 0.F};
     sf::Vector2f position_{0.F, 0.F};
     sf::Vector2f local_position_{0.F, 0.F};
-    // TODO rotation
-    // TODO scale
 
     sf::Vector2f origin_{0.F, 0.F};
-    // TODO visibility
-    // TODO enable
 
     Container* parent_ = nullptr;
     const WidgetType type_;

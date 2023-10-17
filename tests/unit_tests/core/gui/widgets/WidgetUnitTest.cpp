@@ -86,3 +86,20 @@ TEST_F(WidgetUnitTest, get_origin){
     // then
     ASSERT_EQ(expected_origin, actual_origin);
 }
+
+TEST_F(WidgetUnitTest, get_type){
+    // given
+    const std::string expected_type_name{"WidgetMock"};
+    const uint64_t expected_first_widget_index{0};
+    const uint64_t expected_second_widget_index{1};
+    auto second_widget = std::make_unique<WidgetMock>();
+
+    // when
+    auto first_type = widget->getType();
+    auto second_type = second_widget->getType();
+
+    // then
+    ASSERT_EQ(expected_type_name, first_type.getName());
+    ASSERT_EQ(expected_first_widget_index, first_type.getIndex());
+    ASSERT_EQ(expected_second_widget_index, second_type.getIndex());
+}

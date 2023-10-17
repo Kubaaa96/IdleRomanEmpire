@@ -45,6 +45,6 @@ sf::Vector2f Widget::getLocalPosition() const {
     return local_position_;
 }
 
-const WidgetType Widget::getType() const {
+WidgetType Widget::getType() const {
     return type_;
 }
