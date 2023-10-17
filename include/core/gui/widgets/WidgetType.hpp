@@ -5,6 +5,14 @@
 
 struct WidgetType
 {
+    WidgetType(const WidgetType&) = default;
+    WidgetType& operator=(const WidgetType&) = default;
+
+    WidgetType(WidgetType&&) = default;
+    WidgetType& operator=(WidgetType&&) = default;
+
+    ~WidgetType() = default;
+
     [[nodiscard]] uint64_t getIndex() const {
         return index_;
     }

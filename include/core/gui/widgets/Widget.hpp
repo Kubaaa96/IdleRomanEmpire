@@ -49,5 +49,5 @@ protected:
     sf::Vector2f origin_{0.F, 0.F};
 
     Container* parent_ = nullptr;
-    const WidgetType type_;
+    WidgetType type_;
 };
