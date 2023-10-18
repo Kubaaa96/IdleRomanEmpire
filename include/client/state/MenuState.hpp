@@ -4,7 +4,7 @@
 
 struct MenuState : State{
 
-    explicit MenuState(sf::RenderTarget* renderTarget, bool replacing);
+    explicit MenuState(sf::RenderTarget* render_target, bool replacing);
 
     void draw() override;
 };

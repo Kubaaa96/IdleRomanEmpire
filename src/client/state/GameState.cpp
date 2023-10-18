@@ -1,13 +1,16 @@
 #include "client/state/GameState.hpp"
+#include "core/gui/widgets/Button.hpp"
+#include <iostream>
+GameState::GameState(sf::RenderTarget *renderTarget, bool replacing) : State(renderTarget, replacing) {
+    auto button = std::make_unique<Button>();
 
-GameState::GameState(sf::RenderTarget *renderTarget, bool replacing) : State(renderTarget, replacing) {}
+    group_ = std::make_unique<Group>();
+    group_->add(std::move(button));
+    group_->setPosition({120, 120});
+}
 
 void GameState::draw() {
+    const auto current_viewport_size = static_cast<sf::Vector2f>(render_target_->getSize());
+    group_->setSize(current_viewport_size);
     State::draw();
-
-    sf::RectangleShape rectangle(sf::Vector2f(128.0f, 128.0f));
-    rectangle.setFillColor(sf::Color::Blue);
-    rectangle.setPosition(320, 240);
-
-    renderTarget_->draw(rectangle);
 }

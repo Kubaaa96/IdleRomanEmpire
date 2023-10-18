@@ -1,11 +1,13 @@
 #pragma once
 
+#include "core/gui/widgets/Group.hpp"
+
 #include <SFML/Graphics.hpp>
 
 #include <memory>
 
 struct State{
-    State(sf::RenderTarget* renderTarget, bool replacing);
+    State(sf::RenderTarget* render_target, bool replacing);
 
     State(const State&) = delete;
     State& operator=(State&) = delete;
@@ -22,9 +24,11 @@ struct State{
     virtual ~State() = default;
 
 protected:
-    sf::RenderTarget* renderTarget_;
+    sf::RenderTarget* render_target_;
 
     std::unique_ptr<State> next_;
+
+    std::unique_ptr<Group> group_;
 
     bool replacing_;
 };

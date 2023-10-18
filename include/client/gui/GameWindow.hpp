@@ -8,6 +8,6 @@
 struct GameWindow : SystemWindow{
     template<typename... T>
     explicit GameWindow(T&&... args) : SystemWindow(std::forward<T>(args)...){
-        stateMachine_->run(std::make_unique<GameState>(window_.get(), true));
+        state_machine_->run(std::make_unique<GameState>(window_.get(), true));
     }
 };

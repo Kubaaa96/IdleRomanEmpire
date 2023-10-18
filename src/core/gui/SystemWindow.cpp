@@ -7,16 +7,17 @@ void SystemWindow::display() {
 }
 
 void SystemWindow::update() {
-    stateMachine_->nextState();
+    state_machine_->nextState();
 }
 
 void SystemWindow::draw() {
-    stateMachine_->draw();
+    state_machine_->draw();
 }
 
 bool SystemWindow::isOpen() {
     return window_->isOpen();
 }
+
 void SystemWindow::processEvents() {
 
     sf::Event event;

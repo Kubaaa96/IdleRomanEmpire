@@ -22,8 +22,8 @@ struct Application{
     ~Application() = default;
 
 private:
-    const unsigned int window_width{1920};
-    const unsigned int window_height{1080};
+    const unsigned int window_width_{1920};
+    const unsigned int window_height_{1080};
 
     std::unique_ptr<GameWindow> window_;
     std::unique_ptr<Engine> engine_;
