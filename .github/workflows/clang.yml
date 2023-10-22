@@ -18,6 +18,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install conan==1.61.0 gcovr
+          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
           sudo brew install yq
           yq '.compiler.clang.version += ["17"]' /root/.conan/settings.yml 
           sudo apt-get update
