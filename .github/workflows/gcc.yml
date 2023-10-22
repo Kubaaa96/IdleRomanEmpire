@@ -31,9 +31,10 @@ jobs:
 
       - name: Configure project
         working-directory: project
-        run: cmake -Bbuild
-          -DCMAKE_BUILD_TYPE="${{ matrix.BUILD_TYPE }}"
-          -DCMAKE_CXX_COMPILER=g++-"${{ matrix.GCC }}" .
+        run: | 
+          cmake -Bbuild -DCMAKE_BUILD_TYPE="${{ matrix.BUILD_TYPE }}" -DCMAKE_CXX_COMPILER=g++-"${{ matrix.GCC }}" .
+          sudo find / -name settings.yml 
+        
 
       - name: Build project
         working-directory: project
