@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         BUILD_TYPE: [ Debug, Release ]
-        GCC: [ 11, 12, 13]
+        GCC: [11, 12, 13]
 
     steps:
       - name: Install dependencies
