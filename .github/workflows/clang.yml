@@ -18,6 +18,9 @@ jobs:
       - name: Install dependencies
         run: |
           pip install conan==1.61.0 gcovr
+          wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq && sudo chmod +x /usr/bin/yq
+          conan config init
+          sudo yq -i '.compiler.clang.version += ["17"]' ~/.conan/settings.yml 
           sudo apt-get update
           sudo apt-get install -y libudev-dev libgl-dev libx11-xcb-dev libfontenc-dev libxaw7-dev libxcomposite-dev libxcursor-dev libxdamage-dev libxfixes-dev libxi-dev libxinerama-dev libxmu-dev libxmuu-dev libxpm-dev libxrandr-dev libxres-dev libxss-dev libxtst-dev libxv-dev libxvmc-dev libxxf86vm-dev libxcb-render-util0-dev libxcb-xkb-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-keysyms1-dev libxcb-randr0-dev libxcb-shape0-dev libxcb-sync-dev libxcb-xfixes0-dev libxcb-xinerama0-dev libxcb-dri3-dev libxcb-cursor-dev libxcb-util-dev libxcb-util0-dev xvfb
 
@@ -35,9 +38,6 @@ jobs:
       - name: Configure project
         working-directory: project
         run: |
-          wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq && sudo chmod +x /usr/bin/yq
-          conan config init
-          sudo yq '.compiler.clang.version += ["17"]' ~/.conan/settings.yml 
           cmake -Bbuild -DCMAKE_BUILD_TYPE="${{ matrix.BUILD_TYPE }}" -DCMAKE_CXX_COMPILER=clang++-"${{ matrix.CLANG }}" .
 
       - name: Build project
