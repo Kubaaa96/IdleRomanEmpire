@@ -1,6 +1,7 @@
 #include "core/gui/widgets/Button.hpp"
 
 Button::Button() : ClickableWidget("Button") {
+    ClickableWidget::setSize(default_size);
     rectangle_shape.setSize(default_size);
     rectangle_shape.setFillColor(sf::Color::Red);
 }

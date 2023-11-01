@@ -17,3 +17,15 @@ void Container::draw(sf::RenderTarget* target) {
 std::size_t Container::getWidgetsCount() const {
     return widgets_.size();
 }
+
+void Container::onEvent(MouseButtonPressedEvent& event) {
+    forwardEventWithPosition(event);
+}
+
+void Container::onEvent(MouseButtonReleasedEvent& event) {
+    Widget::onEvent(event);
+}
+
+void Container::onEvent(MouseMovedEvent& event) {
+    Widget::onEvent(event);
+}

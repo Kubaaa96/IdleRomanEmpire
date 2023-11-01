@@ -3,6 +3,8 @@ add_library_and_link(NAME IRELib
     ${CMAKE_CURRENT_SOURCE_DIR}/Engine.cpp
 
     ${CMAKE_CURRENT_SOURCE_DIR}/gui/SystemWindow.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/gui/EventEmitter.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/gui/EventListener.cpp
 
     ${CMAKE_CURRENT_SOURCE_DIR}/gui/widgets/Widget.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gui/widgets/ClickableWidget.cpp

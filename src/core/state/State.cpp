@@ -16,3 +16,4 @@ bool State::isReplacing() const {
 std::unique_ptr<State> State::next() {
     return std::move(next_);
 }
+

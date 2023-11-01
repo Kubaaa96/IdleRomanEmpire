@@ -1,6 +1,7 @@
 #pragma once
 
 #include "core/gui/widgets/Group.hpp"
+#include "core/gui/Event.hpp"
 
 #include <SFML/Graphics.hpp>
 
@@ -20,6 +21,13 @@ struct State{
     std::unique_ptr<State> next();
 
     [[nodiscard]] bool isReplacing() const;
+
+    template<typename EventT>
+    void forwardEventWithPosition(EventT& event){
+        if(group_->getClientBounds().contains(event.position)){
+            group_->onEvent(event);
+        }
+    }
 
     virtual ~State() = default;
 

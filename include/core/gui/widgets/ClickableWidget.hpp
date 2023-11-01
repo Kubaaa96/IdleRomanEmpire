@@ -11,4 +11,8 @@ struct ClickableWidget : Widget {
     void setPosition(const sf::Vector2f& position) override;
 
     virtual void updateWidget() = 0;
+
+    void onEvent(MouseButtonPressedEvent& event) override;
+    void onEvent(MouseButtonReleasedEvent& event) override;
+    void onEvent(MouseMovedEvent& event) override;
 };

@@ -3,10 +3,14 @@
 #include <iostream>
 GameState::GameState(sf::RenderTarget *renderTarget, bool replacing) : State(renderTarget, replacing) {
     auto button = std::make_unique<Button>();
+    button->addEventListener<MouseButtonPressedEvent>([]([[maybe_unused]] MouseButtonPressedEvent& event){
+        fmt::print("Clicked Nice\n");
+    });
 
     group_ = std::make_unique<Group>();
     group_->add(std::move(button));
     group_->setPosition({120, 120});
+
 }
 
 void GameState::draw() {

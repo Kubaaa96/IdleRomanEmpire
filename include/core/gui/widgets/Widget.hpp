@@ -1,11 +1,14 @@
 #pragma once
 
 #include "core/gui/widgets/WidgetType.hpp"
+#include "core/gui/Event.hpp"
+#include "core/gui/EventEmitter.hpp"
 
 #include <SFML/Graphics.hpp>
+#include <fmt/core.h>
 
 #include <memory>
-#include <fmt/core.h>
+#include <functional>
 
 struct Container;
 struct WidgetType;
@@ -41,6 +44,17 @@ struct Widget {
 
     [[nodiscard]] virtual WidgetType getType() const;
 
+    [[nodiscard]] sf::FloatRect getClientBounds() const;
+
+    template<typename EventT, typename FuncT>
+    void addEventListener(FuncT func){
+        event_emitter->addEventListener<EventT>(func);
+    }
+
+    virtual void onEvent(MouseButtonPressedEvent& event);
+    virtual void onEvent(MouseButtonReleasedEvent& event);
+    virtual void onEvent(MouseMovedEvent& event);
+
 protected:
     sf::Vector2f size_{0.F, 0.F};
     sf::Vector2f position_{0.F, 0.F};
@@ -50,4 +64,5 @@ protected:
 
     Container* parent_ = nullptr;
     WidgetType type_;
+    std::unique_ptr<EventEmitter> event_emitter;
 };

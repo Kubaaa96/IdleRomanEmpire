@@ -1,6 +1,6 @@
 #include "core/gui/widgets/Widget.hpp"
 
-Widget::Widget(std::string_view name) : type_(WidgetType::create(name)) {}
+Widget::Widget(std::string_view name) : type_(WidgetType::create(name)), event_emitter(std::make_unique<EventEmitter>()) {}
 
 void Widget::setPosition(const sf::Vector2f& position) {
     position_ = position;
@@ -47,4 +47,17 @@ sf::Vector2f Widget::getLocalPosition() const {
 
 WidgetType Widget::getType() const {
     return type_;
+}
+sf::FloatRect Widget::getClientBounds() const {
+    return {position_, size_};
+}
+
+void Widget::onEvent([[maybe_unused]] MouseButtonPressedEvent& event) {
+
+}
+
+void Widget::onEvent([[maybe_unused]] MouseButtonReleasedEvent& event) {
+}
+
+void Widget::onEvent([[maybe_unused]] MouseMovedEvent& event) {
 }

@@ -11,3 +11,16 @@ void ClickableWidget::setPosition(const sf::Vector2f& position) {
     updateWidget();
 }
 ClickableWidget::ClickableWidget(std::string_view name) : Widget(name) {}
+
+void ClickableWidget::onEvent(MouseButtonPressedEvent& event) {
+    event_emitter->emitEvent<MouseButtonPressedEvent>(event);
+    event.handled = true;
+}
+
+void ClickableWidget::onEvent(MouseButtonReleasedEvent& event) {
+    Widget::onEvent(event);
+}
+
+void ClickableWidget::onEvent(MouseMovedEvent& event) {
+    Widget::onEvent(event);
+}
