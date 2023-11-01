@@ -77,15 +77,16 @@ function(set_project_warnings TARGET_NAME)
             -Wlogical-op   # warn about logical operations being used where bitwise were
             # probably wanted
             -Wuseless-cast # warn if you perform a cast to the same type
-            -std=c++23
             )
 
     if(MSVC)
         set(PROJECT_WARNINGS ${MSVC_WARNINGS})
     elseif(CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
         set(PROJECT_WARNINGS ${CLANG_WARNINGS})
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++ -std=c++20")
     elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
         set(PROJECT_WARNINGS ${GCC_WARNINGS})
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20")
     else()
         message(AUTHOR_WARNING "No compiler warnings set for '${CMAKE_CXX_COMPILER_ID}' compiler.")
     endif()
